@@ -7,7 +7,7 @@ WORKDIR /opt/irisapp
 RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 USER ${ISC_PACKAGE_MGRUSER}
 
-RUN mkdir /tmp/hl7 && mkdir /tmp/hl7/in && mkdir /tmp/hl7/out
+RUN mkdir /tmp/hl7 && mkdir /tmp/hl7/in && mkdir /tmp/hl7/out && chmod a+w /tmp/hl7/out
 
 COPY  Installer.cls .
 COPY  src src

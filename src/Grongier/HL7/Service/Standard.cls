@@ -147,7 +147,7 @@ Property %isNewBatch As %Boolean [ InitialExpression = 1, Internal ];
 
 Method OnInit() As %Status
 {
-	Set ..%Parser=##class(EnsLib.HL7.Parser).%New($this)
+	Set ..%Parser=##class(Grongier.HL7.Parser).%New($this)
 	If "!"=$E(..Framing,*) { Set ..%Parser.Framing=$E(..Framing,1,*-1), ..%Parser.RememberFlex=1}
 	Else { Set ..%Parser.Framing=..Framing }
 	Set ..%Parser.DefCharEncoding=..DefCharEncoding
