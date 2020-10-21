@@ -24,10 +24,6 @@ XData ProductionDefinition
     <Setting Target="Host" Name="TargetConfigNames">MsgRouter</Setting>
     <Setting Target="Adapter" Name="FilePath">/tmp/hl7/in/</Setting>
   </Item>
-  <Item Name="HL7FileServiceAnonymize" Category="" ClassName="Demo.HL7.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="This is a default HL7 File Service." LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="TargetConfigNames">MsgRouter</Setting>
-    <Setting Target="Adapter" Name="FilePath">/tmp/hl7/in/</Setting>
-  </Item>
   <Item Name="HL7FileOperation" Category="" ClassName="EnsLib.HL7.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="This is a default HL7 File Operation." LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/tmp/hl7/out/</Setting>
   </Item>

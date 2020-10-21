@@ -9,12 +9,6 @@ XData RuleDefinition [ XMLNamespace = "http://www.intersystems.com/rule" ]
 <ruleDefinition alias="" context="EnsLib.HL7.MsgRouter.RoutingEngine" production="Demo.Production">
 <ruleSet name="" effectiveBegin="" effectiveEnd="">
 <rule name="" disabled="false">
-<constraint name="source" value="HL7FileServiceAnonymize"></constraint>
-<when condition="1">
-<send transform="" target="HL7FileOperation"></send>
-</when>
-</rule>
-<rule name="" disabled="false">
 <constraint name="source" value="HL7FileService"></constraint>
 <when condition="1">
 <send transform="" target="HL7FileOperation"></send>

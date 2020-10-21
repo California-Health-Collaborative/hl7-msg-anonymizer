@@ -1427,17 +1427,53 @@ Method OutputToIOStream(pIOStream As %IO.I.CharacterStream, pSeparators As %Stri
 /// Display Segments as HTML, using DocType info if available
 Method OutputHTML() As %Status
 {
+
+	If ($System.Security.Check("NotAnonymize", "USE")) {
+		quit ..OutputHTMLOriginal()
+	} else {
+		quit ..OutputHTMLAnonymize()
+	}
+}
+
+Method OutputHTMLZen() As %Status
+{
+	If ($System.Security.Check("NotAnonymize", "USE")) {
+		quit ..OutputHTMLZenOriginal()
+	} else {
+		quit ..OutputHTMLZenAnonymize()
+	}
+}
+
+/// Display Segments as HTML, using DocType info if available
+Method OutputHTMLOriginal() As %Status
+{
 	Set tSC=$$$OK
 	Set tSeparators=..Separators  Set:""=tSeparators tSeparators=$$$HL7DefSeparators Set:""=$$$SEGTERM(tSeparators) tSeparators=tSeparators_..SegmentTerminator  Set $$$SEGTERM(tSeparators)=$ZStrip($$$SEGTERM(tSeparators),"*CW")
 	Quit ..OutputToDevice(,tSeparators,"EnsLib.HL7.Util.FormatHTMLv2")
 }
 
 /// Display Segments as HTML, using DocType info if available
-Method OutputHTMLZen() As %Status
+Method OutputHTMLZenOriginal() As %Status
 {
 	Set tSC=$$$OK
 	Set tSeparators=..Separators  Set:""=tSeparators tSeparators=$$$HL7DefSeparators Set:""=$$$SEGTERM(tSeparators) tSeparators=tSeparators_..SegmentTerminator  Set $$$SEGTERM(tSeparators)=$ZStrip($$$SEGTERM(tSeparators),"*CW")
 	Quit ..OutputToDevice(,tSeparators,"EnsLib.HL7.Util.FormatHTMLv2Zen")
+}
+
+/// Display Segments as HTML, using DocType info if available
+Method OutputHTMLAnonymize() As %Status
+{
+	Set tSC=$$$OK
+	Set tSeparators=..Separators  Set:""=tSeparators tSeparators=$$$HL7DefSeparators Set:""=$$$SEGTERM(tSeparators) tSeparators=tSeparators_..SegmentTerminator  Set $$$SEGTERM(tSeparators)=$ZStrip($$$SEGTERM(tSeparators),"*CW")
+	Quit ..OutputToDevice(,tSeparators,"EnsLib.HL7.Util.FormatHTMLv2Anonymize")
+}
+
+/// Display Segments as HTML, using DocType info if available
+Method OutputHTMLZenAnonymize() As %Status
+{
+	Set tSC=$$$OK
+	Set tSeparators=..Separators  Set:""=tSeparators tSeparators=$$$HL7DefSeparators Set:""=$$$SEGTERM(tSeparators) tSeparators=tSeparators_..SegmentTerminator  Set $$$SEGTERM(tSeparators)=$ZStrip($$$SEGTERM(tSeparators),"*CW")
+	Quit ..OutputToDevice(,tSeparators,"EnsLib.HL7.Util.FormatHTMLv2ZenAnonymize")
 }
 
 ClassMethod ImportFromFile(pFilename As %String, pDocNum As %Integer = 1, Output pStatus As %Status, ByRef pConfigItem As %String, pIOFormatClassname As %String) As EnsLib.HL7.Message
