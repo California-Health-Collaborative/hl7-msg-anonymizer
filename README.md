@@ -2,7 +2,7 @@
 
 This is a modification of EnsLib.HL7.Message to not display Patient demography information in visual trace.
 
-This feature is toggle by a resource name NotAnonymize, if a user have this resource in USE, then he can see patient demography otherwise not.
+This feature is toggle by a resource named NotAnonymize, if a user have this resource in USE, then he can see patient demography otherwise not.
 
 Example : 
 
@@ -67,6 +67,7 @@ Method OutputHTML() As %Status
 	}
 }
 
+/// Display Segments as HTML, using DocType info if available
 Method OutputHTMLZen() As %Status
 {
 	If ($System.Security.Check("NotAnonymize", "USE")) {
@@ -110,7 +111,7 @@ Method OutputHTMLZenAnonymize() As %Status
 
 ```
 
-EnsLib.HL7.Util.FormatHTMLv2Anonymize and EnsLib.HL7.Util.FormatHTMLv2ZenAnonymize lokk like this :
+EnsLib.HL7.Util.FormatHTMLv2Anonymize and EnsLib.HL7.Util.FormatHTMLv2ZenAnonymize look like this :
 
 ```objectscript
 Class EnsLib.HL7.Util.FormatHTMLv2Anonymize Extends EnsLib.HL7.Util.FormatHTMLv2
@@ -169,7 +170,9 @@ ClassMethod Anonymize(pSegment As EnsLib.EDI.Segment, pPosition As %String) As %
 }
 ```
 Here we can notice two things:
+
 One, we use the ##super() method in order to reuse the logic of the overloaded method.
+
 Secondly, the segments are anonymized by their positions and not by their names because not all HL7 objects have doctypes.
 
 # ToDo
